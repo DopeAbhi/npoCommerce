@@ -1,5 +1,6 @@
 package PageObject;
 
+import AbstractComponents.AbstractComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,17 +9,17 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class SignupPage {
+public class SignupPage extends AbstractComponent {
 
 public WebDriver driver;
 public SignupPage(WebDriver driver)
 {
+    super(driver);
     this.driver = driver;
     PageFactory.initElements(driver, this);
 }
 
-@FindBy(css = ".ico-register")
-    WebElement signUp;
+
 
 @FindBy(css="[value='M']")
     WebElement genderSelection;
@@ -56,10 +57,7 @@ WebElement submitButton;
 @FindBy(css="div[class='result']")
 WebElement successMessage;
 
-public void signupPageNavigation()
-{
-    signUp.click();
-}
+
 public void setGender()
 {
     genderSelection.click();

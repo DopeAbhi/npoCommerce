@@ -15,18 +15,18 @@ public class SignupTest extends BaseTest {
 
     @Test
     public void testSignup() throws InterruptedException {
-        SignupPage page = new SignupPage(driver);
-        page.signupPageNavigation();
-        page.setGender();
-        page.setFirstName("Tester");
-        page.setLastName("Tester");
-        page.setDOB(24,12,"1999");
-        page.setEmail("Tester@yopmai.com");
-        page.setCompanyName("TesterTester");
-        page.setPassword("Test@123");
-        page.setConfirmPassword("Test@123");
-        page.registerButton();
-        String message=page.messageVerification();
+
+      SignupPage signupPage=  page.signupPageNavigation();
+        signupPage.setGender();
+        signupPage.setFirstName("Tester");
+        signupPage.setLastName("Tester");
+        signupPage.setDOB(24,12,"1999");
+        signupPage.setEmail("Tester@yopmai.com");
+        signupPage.setCompanyName("TesterTester");
+        signupPage.setPassword("Test@123");
+        signupPage.setConfirmPassword("Test@123");
+        signupPage.registerButton();
+        String message=signupPage.messageVerification();
         Assert.assertTrue(message.equalsIgnoreCase("Your registration completed"));
 
 

@@ -1,16 +1,21 @@
 package PageObject;
 
+import AbstractComponents.AbstractComponent;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LandingPage {
+import java.util.List;
+
+public class LandingPage extends AbstractComponent {
 
 
     WebDriver driver;
     public LandingPage(WebDriver driver)
     {
+        super(driver);
         this.driver=driver;
         PageFactory.initElements(driver,this);
 
@@ -22,11 +27,7 @@ public class LandingPage {
 
     }
 
-    @FindBy(css = ".ico-login")
-    WebElement loginLink;
-    public LoginPage LoginPageNavigation()
-    {
-        loginLink.click();
-        return new LoginPage(driver);
-    }
+
+
+
 }
