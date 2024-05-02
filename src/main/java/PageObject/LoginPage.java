@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LoginPage extends AbstractComponent {
   WebDriver driver;
@@ -35,21 +36,16 @@ public class LoginPage extends AbstractComponent {
 
 
 
-    @FindBy (css = "div[class='details'] h2 a")
-    List<WebElement> itemTitle;
-
-
-    public void selectItem(String productName)
-    {
-        itemTitle.stream().filter(element->element.getText().equalsIgnoreCase(productName) ).forEach(element->element.findElement(By.cssSelector(".button-2.product-box-add-to-cart-button")).click());
-
-//        for(WebElement element:itemTitle)
+//        int count=0;
+//        for (WebElement element : itemTitle)
 //        {
-//           if(element.getText().equalsIgnoreCase(productName));
-//             element.findElement(By.cssSelector(".button-2.product-box-add-to-cart-button")).click();
-//
-//        }
-    }
+//            if ((element.getText()).equalsIgnoreCase(productName))
+//            {
+//                driver.findElements(By.cssSelector(".button-2.product-box-add-to-cart-button")).get(count).click();
+//                break;
+//            }
+//            count++;
+//                   }
 
     public  void setEmailField(String userEmail)
     {
@@ -87,3 +83,25 @@ public class LoginPage extends AbstractComponent {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

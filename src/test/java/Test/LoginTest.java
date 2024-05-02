@@ -10,14 +10,10 @@ public class LoginTest extends BaseTest {
     public void login() throws InterruptedException {
       LoginPage loginPage= page.LoginPageNavigation();
 
-        loginPage.setEmailField("Tester2@yopmail.com");
+        loginPage.setEmailField("Tester@yopmail.com");
         loginPage.setPasswordField("Test@123");
         loginPage.setRememberMe();
         loginPage.loginButtonClick();
-        Thread.sleep(2000);
-        loginPage.selectItem("$25 Virtual Gift Card");
-        Thread.sleep(3000);
-
         driver.quit();
     }
 
