@@ -35,6 +35,11 @@ public class ProductInfoPage extends AbstractComponent
     @FindBy(css="#add-to-cart-button-43")
     WebElement addToCartButton;
 
+    @FindBy(css="p[class='content'] a")
+    WebElement cartNavigation;
+
+
+
     public void setRecipientName(String recipientName)
     {
         recipientNameField.sendKeys(recipientName);
@@ -45,12 +50,14 @@ public class ProductInfoPage extends AbstractComponent
     }
     public void setSenderName(String senderName)
     {
-        senderNameField.sendKeys(senderName);
-    }
+        if (senderNameField.getAttribute("value") == null)
+        { senderNameField.sendKeys(senderName);
+    }}
     public void setSenderEmail(String senderEmail)
     {
-        senderEmailField.sendKeys(senderEmail);
-    }
+        if(senderEmailField.getAttribute("value") == null || senderEmailField.getAttribute("value").isEmpty())
+        {senderEmailField.sendKeys(senderEmail);
+    }}
     public void setMessageField(String message)
     {
         messageField.sendKeys(message);
@@ -59,6 +66,12 @@ public class ProductInfoPage extends AbstractComponent
     public void addItemtoCart()
     {
         addToCartButton.click();
+    }
+
+    public CartPage cartNavigationfromAlert()
+    {
+        cartNavigation.click();
+        return new CartPage(driver);
     }
 
 

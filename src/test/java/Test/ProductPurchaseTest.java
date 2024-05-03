@@ -21,6 +21,7 @@ public class ProductPurchaseTest extends BaseTest {
         infoPage.setSenderEmail("Tester@yopmail.com");
         infoPage.setMessageField("This gift only for you");
         infoPage.addItemtoCart();
+        infoPage.cartNavigationfromAlert();
 
 
     }
