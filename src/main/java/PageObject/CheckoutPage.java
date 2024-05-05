@@ -19,74 +19,124 @@ public class CheckoutPage extends AbstractComponent {
     }
 
     @FindBy(css = "#BillingNewAddress_FirstName")
-    WebElement firstNameField;
+    private WebElement firstNameField;
 
     @FindBy(css="#BillingNewAddress_LastName")
-    WebElement lastNameField;
+    private WebElement lastNameField;
 
     @FindBy(css="[name='BillingNewAddress.Email']")
-    WebElement emailField;
+    private WebElement emailField;
 
     @FindBy(css="[name='BillingNewAddress.Company']")
-    WebElement companyNameField;
+    private WebElement companyNameField;
 
     @FindBy(css="[data-trigger='country-select']")
-    WebElement countryDropDown;
-
-    @FindBy(css="[data-trigger='state-select']")
-    WebElement stateDropDown;
+    private WebElement countryDropDown;
 
     @FindBy(css="#BillingNewAddress_City")
-    WebElement cityField;
+    private WebElement cityField;
 
     @FindBy(css="[name='BillingNewAddress.Address1']")
-    WebElement firstAddressField;
+    private WebElement firstAddressField;
 
     @FindBy(css="[name='BillingNewAddress.Address2']")
-    WebElement secondAddressField;
+    private WebElement secondAddressField;
 
     @FindBy(css="[name='BillingNewAddress.ZipPostalCode']")
-    WebElement zipCodeField;
+    private WebElement zipCodeField;
 
     @FindBy(css="[name='BillingNewAddress.PhoneNumber']")
-    WebElement phoneNumberField;
+    private WebElement phoneNumberField;
 
     @FindBy(css="#BillingNewAddress_FaxNumber")
-    WebElement faxNumberField;
+    private WebElement faxNumberField;
 
-    @FindBy(css=".new-address-next-step-button")
-    WebElement continueButton;
+    @FindBy(css="[name='save']")
+    private WebElement continueButton;
+
+    @FindBy(css="[id='paymentmethod_1']")
+    private WebElement creditCard;
+
 
 
     public void  setFirstName(String firstName)
     {
-        firstNameField.sendKeys(firstName);
+
+        if (firstNameField.getAttribute("value") == null || firstNameField.getAttribute("value").isEmpty()) {
+            firstNameField.sendKeys(firstName);
+        }
     }
     public  void setLastName(String lastName)
     {
-        lastNameField.sendKeys(lastName);
+        if (lastNameField.getAttribute("value") == null || lastNameField.getAttribute("value").isEmpty()) {
+            lastNameField.sendKeys(lastName);
+        }
     }
 
     public void setEmail(String email)
     {
-        if(emailField.getText()==null ||emailField.getText().isEmpty())
+        if(emailField.getAttribute("value")==null ||emailField.getAttribute("value").isEmpty())
         {
             emailField.sendKeys(email);
         }
     }
 
-    public void setCompanyName(String companyName)
-    {
-        companyNameField.sendKeys(companyName);
+    public void setCompanyName(String companyName) {
+        if (companyNameField.getAttribute("value") == null || companyNameField.getAttribute("value").isEmpty()) {
+            companyNameField.sendKeys(companyName);
+        }
     }
 
     public void selectCountry(String countryName){
 
-        Select dropdown=new Select(companyNameField);
+        Select dropdown=new Select(countryDropDown);
         dropdown.selectByVisibleText(countryName);
     }
 
+    public void setCityField(String cityName)
+    {
+        cityField.sendKeys(cityName);
+    }
 
+    public void setFirstAddress(String firstAddress)
+    {
+        firstAddressField.sendKeys(firstAddress);
+    }
+
+    public void setSecondAddress(String secondAddress)
+    {
+        secondAddressField.sendKeys(secondAddress);
+    }
+
+    public void setZipCode(String zipCode)
+    {
+        zipCodeField.sendKeys(zipCode);
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        phoneNumberField.sendKeys(phoneNumber);
+    }
+
+    public void setFaxNumberField(String faxNumber)
+    {
+        faxNumberField.sendKeys(faxNumber);
+    }
+
+    public void continueButtonClick()
+    {
+        continueButton.click();
+    }
+
+
+    public void selectPaymentMethod (String paymentMethod)
+    {
+        if (paymentMethod.equalsIgnoreCase("Credit Card"))
+        {
+            creditCard.click();
+        }
+        continueButton.click();
+    }
 
 
 }
