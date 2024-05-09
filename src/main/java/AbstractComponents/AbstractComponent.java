@@ -2,6 +2,7 @@ package AbstractComponents;
 
 import PageObject.LoginPage;
 import PageObject.SignupPage;
+import Resources.UrlResponsePair;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,20 +45,22 @@ public AbstractComponent(WebDriver driver)
         return new LoginPage(driver);
     }
 
-    public List<Object> footerLinksVerify() throws IOException {
-        List<int> code=new ArrayList<int>();
-
+    public List<UrlResponsePair> footerLinksVerify() throws IOException {
+        List<UrlResponsePair> codes = new ArrayList<>();
+//        ArrayList<String,Integer> code=new ArrayList<String>;
 
         for (WebElement list:footerLinks) {
+
+
 
             HttpURLConnection connection =(HttpURLConnection) new URL(list.getAttribute("href")).openConnection();
             connection.setRequestMethod("HEAD");
             connection.connect();
-            code.add(connection.getResponseCode());
+            codes.add(new UrlResponsePair(connection.getResponseCode(),list.getText()));
 
 
         }
-        return code;
+        return codes;
 
     }
 
