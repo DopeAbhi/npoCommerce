@@ -32,6 +32,10 @@ public AbstractComponent(WebDriver driver)
     @FindBy(css = "div[class='footer-upper'] div ul li a")
    private List<WebElement> footerLinks;
 
+    @FindBy (css = "div[class='header-menu'] ul:first-child li")
+    private List<WebElement> topMenuLinks;
+
+
 
     public SignupPage signupPageNavigation()
     {
@@ -47,7 +51,7 @@ public AbstractComponent(WebDriver driver)
 
     public List<UrlResponsePair> footerLinksVerify() throws IOException {
         List<UrlResponsePair> codes = new ArrayList<>();
-//        ArrayList<String,Integer> code=new ArrayList<String>;
+
 
         for (WebElement list:footerLinks) {
 
@@ -63,6 +67,8 @@ public AbstractComponent(WebDriver driver)
         return codes;
 
     }
+
+
 
 
 
