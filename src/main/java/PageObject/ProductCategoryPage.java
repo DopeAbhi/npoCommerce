@@ -23,7 +23,7 @@ WebDriver driver;
 
 
 
-    public void selectSubCategory(String Category)
+    public ProductDetailsPage selectSubCategory(String Category)
     {
         for (WebElement element : subCategory)
         {
@@ -32,6 +32,7 @@ WebDriver driver;
                 element.click();
             }
         }
+        return new ProductDetailsPage(driver);
     }
 
 

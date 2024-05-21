@@ -22,7 +22,7 @@ public class ProductListingPage extends AbstractComponent {
     @FindBy(xpath = "//div[@class='details']/h2")
     private List<WebElement> product;
 
-    public void selectProduct(String productName)
+    public ProductDetailsPage selectProduct(String productName)
     {
         for (WebElement element :product)
         {
@@ -31,5 +31,6 @@ public class ProductListingPage extends AbstractComponent {
                 element.click();
             }
         }
+        return new ProductDetailsPage(driver);
     }
 }
