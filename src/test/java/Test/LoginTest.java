@@ -10,7 +10,7 @@ public class LoginTest extends BaseTest {
     public void login() throws InterruptedException {
       LoginPage loginPage= page.LoginPageNavigation();
 
-        loginPage.setEmailField("Tester@yopmail.com");
+        loginPage.setEmailField("Tester1@yopmail.com");
         loginPage.setPasswordField("Test@123");
         loginPage.setRememberMe();
         loginPage.loginButtonClick();

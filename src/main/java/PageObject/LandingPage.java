@@ -31,6 +31,9 @@ public class LandingPage extends AbstractComponent {
     @FindBy (xpath = "//div[@class='details']/h2/a")
     List<WebElement> itemTitle;
 
+    @FindBy(css = "[class='header-menu'] ul li a")
+    List<WebElement> topMenu;
+
 
     public ProductInfoPage selectItem(String productName) {
 
@@ -42,6 +45,22 @@ public class LandingPage extends AbstractComponent {
         return new ProductInfoPage(driver);
 
     }
+
+    public ProductCategoryPage categoryfromMenu(String category)
+    {
+
+        for (WebElement element :topMenu)
+        {
+
+            if(element.getText().equalsIgnoreCase(category))
+            {
+
+                element.click();
+            }
+        }
+        return new ProductCategoryPage(driver);
+    }
+
 
 
 }
