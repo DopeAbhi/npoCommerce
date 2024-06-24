@@ -7,21 +7,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractComponent {
 
-WebDriver driver;
+public WebDriver driver;
+    public WebDriverWait explicitWait;
+
 public AbstractComponent(WebDriver driver)
 {
    this.driver=driver;
     PageFactory.initElements(driver, this);
+    explicitWait =new WebDriverWait(this.driver,Duration.ofSeconds(5));
+
 }
+
     @FindBy(css = ".ico-register")
    private WebElement signUp;
 

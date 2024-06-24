@@ -30,6 +30,8 @@ public class ProductPurchaseTest extends BaseTest {
         //Cart Page Handling
         CartPage cartPage =infoPage.cartNavigationfromAlert();
         cartPage.setTermsandService();
+
+        //Checkout Page Handling
        CheckoutPage checkoutPage= cartPage.orderCheckoutButton();
        checkoutPage.setFirstName("FirstNameCheckout");
        checkoutPage.setLastName("LastNameCheckout");

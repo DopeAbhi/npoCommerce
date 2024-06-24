@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -14,10 +15,12 @@ public class LandingPage extends AbstractComponent {
 
 
     WebDriver driver;
+
     public LandingPage(WebDriver driver)
     {
         super(driver);
         this.driver=driver;
+
         PageFactory.initElements(driver,this);
 
     }
@@ -54,8 +57,8 @@ public class LandingPage extends AbstractComponent {
 
             if(element.getText().equalsIgnoreCase(category))
             {
-
-                element.click();
+                explicitWait.until(ExpectedConditions.elementToBeClickable(element)).click();
+                break;
             }
         }
         return new ProductCategoryPage(driver);

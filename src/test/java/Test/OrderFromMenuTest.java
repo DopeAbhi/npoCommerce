@@ -15,9 +15,10 @@ public class OrderFromMenuTest extends BaseTest {
         loginPage.setPasswordField("Test@123");
         loginPage.setRememberMe();
         loginPage.loginButtonClick();
-       ProductCategoryPage productCategoryPage= page.categoryfromMenu("Computers");
-       ProductDetailsPage productDetailsPage= productCategoryPage.selectSubCategory("Notebooks");
-       productDetailsPage.addProductToCart();
+        ProductCategoryPage productCategoryPage= page.categoryfromMenu("Computers");
+
+        ProductDetailsPage productDetailsPage= productCategoryPage.selectSubCategory("Notebooks");
+        productDetailsPage.addProductToCart();
 
 
         driver.quit();
