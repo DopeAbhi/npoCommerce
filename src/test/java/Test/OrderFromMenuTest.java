@@ -1,8 +1,6 @@
 package Test;
 
-import PageObject.LoginPage;
-import PageObject.ProductCategoryPage;
-import PageObject.ProductDetailsPage;
+import PageObject.*;
 import TestComponents.BaseTest;
 import org.testng.annotations.Test;
 
@@ -18,7 +16,16 @@ public class OrderFromMenuTest extends BaseTest {
         ProductCategoryPage productCategoryPage= page.categoryfromMenu("Computers");
 
         ProductDetailsPage productDetailsPage= productCategoryPage.selectSubCategory("Notebooks");
-        productDetailsPage.addProductToCart();
+        productDetailsPage.itemAdd("Samsung");
+        Thread.sleep(2000);
+
+
+        CartPage cartPage=productDetailsPage.cartNavigationfromNotifications();
+        cartPage.setTermsandService();
+
+
+        CheckoutPage checkoutPage= cartPage.orderCheckoutButton();
+
 
 
         driver.quit();
