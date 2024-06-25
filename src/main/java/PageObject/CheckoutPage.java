@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class CheckoutPage extends AbstractComponent {
 
     WebDriver driver;
@@ -51,11 +53,17 @@ public class CheckoutPage extends AbstractComponent {
     @FindBy(css="#BillingNewAddress_FaxNumber")
     private WebElement faxNumberField;
 
-    @FindBy(css="[name='save']")
-    private WebElement continueButton;
+    @FindBy(xpath = "//button[text()='Continue']")
+    private List<WebElement> continueButton;
 
     @FindBy(css="[id='paymentmethod_1']")
     private WebElement creditCard;
+
+    @FindBy(css = "#shippingoption_1")
+    private WebElement shippingOption;
+
+    @FindBy(xpath = "//label[contains(text(),'Select a billing address')]")
+    private WebElement savedAddress;
 
 
 
@@ -123,9 +131,9 @@ public class CheckoutPage extends AbstractComponent {
         faxNumberField.sendKeys(faxNumber);
     }
 
-    public void continueButtonClick()
+    public void continueButtonClick(int index)
     {
-        continueButton.click();
+        continueButton.get(index).click();
     }
 
 
@@ -135,8 +143,18 @@ public class CheckoutPage extends AbstractComponent {
         {
             creditCard.click();
         }
-        continueButton.click();
+
     }
 
+    public void selectShippingMethod ()
+    {
+        shippingOption.click();
+    }
+
+    public String savedAddressCheck()
+    {
+        return savedAddress.getText();
+
+    }
 
 }

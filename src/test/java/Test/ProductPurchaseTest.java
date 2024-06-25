@@ -45,9 +45,9 @@ public class ProductPurchaseTest extends BaseTest {
        checkoutPage.setZipCode("123456");
        checkoutPage.setPhoneNumber("1234567890");
        checkoutPage.setFaxNumberField("17809902112");
-       checkoutPage.continueButtonClick();
+       checkoutPage.continueButtonClick(0);
        checkoutPage.selectPaymentMethod("Cash");
-       checkoutPage.continueButtonClick();
+       checkoutPage.continueButtonClick(0);
        Thread.sleep(3000);
 
 

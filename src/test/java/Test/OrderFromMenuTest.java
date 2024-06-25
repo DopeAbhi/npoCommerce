@@ -9,7 +9,7 @@ public class OrderFromMenuTest extends BaseTest {
     @Test
     public void Order() throws InterruptedException {
     LoginPage loginPage= page.LoginPageNavigation();
-        loginPage.setEmailField("Tester1@yopmail.com");
+        loginPage.setEmailField("Tester2@yopmail.com");
         loginPage.setPasswordField("Test@123");
         loginPage.setRememberMe();
         loginPage.loginButtonClick();
@@ -25,7 +25,38 @@ public class OrderFromMenuTest extends BaseTest {
 
 
         CheckoutPage checkoutPage= cartPage.orderCheckoutButton();
+        String savedAddressStatus=checkoutPage.savedAddressCheck();
 
+        if (savedAddressStatus.isEmpty()) {
+            checkoutPage.setFirstName("FirstNameCheckout");
+            checkoutPage.setLastName("LastNameCheckout");
+            checkoutPage.setEmail("EmailCheckout@yopmail.com");
+            checkoutPage.setCompanyName("Company Name Checkout");
+            checkoutPage.selectCountry("India");
+
+            checkoutPage.setCityField("Lucknow");
+            checkoutPage.setFirstAddress("First Address Checkout");
+            checkoutPage.setSecondAddress("SecondAddress Checkout");
+            checkoutPage.setZipCode("123456");
+            checkoutPage.setPhoneNumber("1234567890");
+            checkoutPage.setFaxNumberField("17809902112");
+            checkoutPage.continueButtonClick(0);
+            checkoutPage.selectPaymentMethod("Cash");
+            checkoutPage.continueButtonClick(0);
+            Thread.sleep(3000);
+            checkoutPage.selectShippingMethod();
+            checkoutPage.continueButtonClick(2);
+        }
+
+        else
+        {
+            checkoutPage.continueButtonClick(0);
+        }
+
+
+
+
+        Thread.sleep(3000);
 
 
         driver.quit();
