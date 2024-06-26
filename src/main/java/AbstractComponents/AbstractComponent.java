@@ -78,8 +78,9 @@ public AbstractComponent(WebDriver driver)
 
     public void selectMethod(WebElement element,String text)
     {
+        element.click();
         Select dropdown=new Select(element);
-        dropdown.selectByVisibleText(text);
+       dropdown.selectByValue(text);
     }
 
 

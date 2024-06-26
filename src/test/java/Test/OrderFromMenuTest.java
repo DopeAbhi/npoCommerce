@@ -9,7 +9,7 @@ public class OrderFromMenuTest extends BaseTest {
     @Test
     public void Order() throws InterruptedException {
 
-      String PaymentMethod="CreditCard";
+      String PaymentMethod="Credit Card";
     LoginPage loginPage= page.LoginPageNavigation();
         loginPage.setEmailField("Tester3@yopmail.com");
         loginPage.setPasswordField("Test@123");
@@ -29,7 +29,7 @@ public class OrderFromMenuTest extends BaseTest {
         CheckoutPage checkoutPage= cartPage.orderCheckoutButton();
         Boolean savedAddressStatus=checkoutPage.savedAddressCheck();
 
-        if (!savedAddressStatus) {
+        if (savedAddressStatus) {
             checkoutPage.setFirstName("FirstNameCheckout");
             checkoutPage.setLastName("LastNameCheckout");
             checkoutPage.setEmail("EmailCheckout@yopmail.com");
@@ -54,16 +54,18 @@ public class OrderFromMenuTest extends BaseTest {
             checkoutPage.selectPaymentMethod(PaymentMethod);
             checkoutPage.continueButtonClick(3);
 
-            if (PaymentMethod.equalsIgnoreCase("Credit Card"))
+            if (PaymentMethod.contains("Credit"))
             {
+                checkoutPage.setCreditCard("MasterCard");
                 checkoutPage.setCardholderName("TestHacker");
                 checkoutPage.setCardNumber("5555555555554444");
                 checkoutPage.setCardExpireMonth("12");
                 checkoutPage.setCardExpireYear("2027");
                 checkoutPage.setCardCode("123");
-                checkoutPage.continueButtonClick(4);
-            }
 
+            }
+        checkoutPage.continueButtonClick(4);
+            checkoutPage.confirmButtonClick();
 
 
 

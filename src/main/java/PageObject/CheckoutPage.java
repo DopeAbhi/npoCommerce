@@ -82,6 +82,9 @@ public class CheckoutPage extends AbstractComponent {
      @FindBy(id="CardCode")
     private WebElement cardCode;
 
+     @FindBy(xpath = "//button[contains(text(),'Confirm')]")
+     private WebElement confirmButton;
+
 
 
     public void  setFirstName(String firstName)
@@ -202,6 +205,11 @@ public class CheckoutPage extends AbstractComponent {
     public void setCardCode(String code)
     {
         cardCode.sendKeys(code);
+    }
+
+    public void confirmButtonClick()
+    {
+        confirmButton.click();
     }
 
 
