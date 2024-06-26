@@ -21,7 +21,7 @@ public class SignupTest extends BaseTest {
         signupPage.setFirstName("Tester");
         signupPage.setLastName("Tester");
         signupPage.setDOB(24,12,"1999");
-        signupPage.setEmail("Tester2@yopmail.com");
+        signupPage.setEmail("Tester3@yopmail.com");
         signupPage.setCompanyName("TesterTester");
         signupPage.setPassword("Test@123");
         signupPage.setConfirmPassword("Test@123");

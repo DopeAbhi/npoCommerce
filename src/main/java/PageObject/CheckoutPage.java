@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -57,13 +56,31 @@ public class CheckoutPage extends AbstractComponent {
     private List<WebElement> continueButton;
 
     @FindBy(css="[id='paymentmethod_1']")
-    private WebElement creditCard;
+    private WebElement paymentmethod;
 
     @FindBy(css = "#shippingoption_1")
     private WebElement shippingOption;
 
     @FindBy(xpath = "//label[contains(text(),'Select a billing address')]")
-    private WebElement savedAddress;
+    private List<WebElement> savedAddress;
+
+    @FindBy(css=".dropdownlists")
+    private WebElement typeofCard;
+
+    @FindBy(id="CardholderName")
+    private WebElement cardholderName;
+
+    @FindBy(id="CardNumber")
+    private WebElement cardNumber;
+
+    @FindBy(id="ExpireMonth")
+    private WebElement expireMonth;
+
+    @FindBy(id="ExpireYear")
+    private WebElement expireYear;
+
+     @FindBy(id="CardCode")
+    private WebElement cardCode;
 
 
 
@@ -97,8 +114,7 @@ public class CheckoutPage extends AbstractComponent {
 
     public void selectCountry(String countryName){
 
-        Select dropdown=new Select(countryDropDown);
-        dropdown.selectByVisibleText(countryName);
+        selectMethod(countryDropDown, countryName);
     }
 
     public void setCityField(String cityName)
@@ -141,7 +157,7 @@ public class CheckoutPage extends AbstractComponent {
     {
         if (paymentMethod.equalsIgnoreCase("Credit Card"))
         {
-            creditCard.click();
+            paymentmethod.click();
         }
 
     }
@@ -151,10 +167,43 @@ public class CheckoutPage extends AbstractComponent {
         shippingOption.click();
     }
 
-    public String savedAddressCheck()
+    public boolean savedAddressCheck()
     {
-        return savedAddress.getText();
+        return savedAddress.isEmpty();
 
     }
+
+    public void setCreditCard(String card)
+    {
+        selectMethod(typeofCard,card);
+    }
+
+
+    public void setCardholderName(String Name)
+    {
+        cardholderName.sendKeys(Name);
+    }
+
+    public void setCardNumber(String Number)
+    {
+
+        cardNumber.sendKeys(Number);
+
+    }
+
+    public void setCardExpireMonth(String month)
+    {
+        selectMethod(expireMonth,month);
+    }
+    public void setCardExpireYear(String year)
+    {
+        selectMethod(expireYear,year);
+    }
+    public void setCardCode(String code)
+    {
+        cardCode.sendKeys(code);
+    }
+
+
 
 }

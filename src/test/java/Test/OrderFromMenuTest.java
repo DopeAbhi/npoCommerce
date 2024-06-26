@@ -8,8 +8,10 @@ public class OrderFromMenuTest extends BaseTest {
 
     @Test
     public void Order() throws InterruptedException {
+
+      String PaymentMethod="CreditCard";
     LoginPage loginPage= page.LoginPageNavigation();
-        loginPage.setEmailField("Tester2@yopmail.com");
+        loginPage.setEmailField("Tester3@yopmail.com");
         loginPage.setPasswordField("Test@123");
         loginPage.setRememberMe();
         loginPage.loginButtonClick();
@@ -25,9 +27,9 @@ public class OrderFromMenuTest extends BaseTest {
 
 
         CheckoutPage checkoutPage= cartPage.orderCheckoutButton();
-        String savedAddressStatus=checkoutPage.savedAddressCheck();
+        Boolean savedAddressStatus=checkoutPage.savedAddressCheck();
 
-        if (savedAddressStatus.isEmpty()) {
+        if (!savedAddressStatus) {
             checkoutPage.setFirstName("FirstNameCheckout");
             checkoutPage.setLastName("LastNameCheckout");
             checkoutPage.setEmail("EmailCheckout@yopmail.com");
@@ -40,18 +42,28 @@ public class OrderFromMenuTest extends BaseTest {
             checkoutPage.setZipCode("123456");
             checkoutPage.setPhoneNumber("1234567890");
             checkoutPage.setFaxNumberField("17809902112");
-            checkoutPage.continueButtonClick(0);
-            checkoutPage.selectPaymentMethod("Cash");
-            checkoutPage.continueButtonClick(0);
-            Thread.sleep(3000);
-            checkoutPage.selectShippingMethod();
-            checkoutPage.continueButtonClick(2);
+
         }
 
-        else
-        {
+
             checkoutPage.continueButtonClick(0);
-        }
+        Thread.sleep(3000);
+
+            checkoutPage.selectShippingMethod();
+            checkoutPage.continueButtonClick(2);
+            checkoutPage.selectPaymentMethod(PaymentMethod);
+            checkoutPage.continueButtonClick(3);
+
+            if (PaymentMethod.equalsIgnoreCase("Credit Card"))
+            {
+                checkoutPage.setCardholderName("TestHacker");
+                checkoutPage.setCardNumber("5555555555554444");
+                checkoutPage.setCardExpireMonth("12");
+                checkoutPage.setCardExpireYear("2027");
+                checkoutPage.setCardCode("123");
+                checkoutPage.continueButtonClick(4);
+            }
+
 
 
 
