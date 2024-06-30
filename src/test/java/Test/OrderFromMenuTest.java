@@ -10,24 +10,30 @@ public class OrderFromMenuTest extends BaseTest {
     public void Order() throws InterruptedException {
 
       String PaymentMethod="Credit Card";
-    LoginPage loginPage= page.LoginPageNavigation();
+
+       //Login in the Page After for the Order
+        LoginPage loginPage= page.LoginPageNavigation();
         loginPage.setEmailField("Tester3@yopmail.com");
         loginPage.setPasswordField("Test@123");
         loginPage.setRememberMe();
         loginPage.loginButtonClick();
+
+        //Navigating to the Product Category Page
         ProductCategoryPage productCategoryPage= page.categoryfromMenu("Computers");
 
+        //Adding Item to the Cart
         ProductDetailsPage productDetailsPage= productCategoryPage.selectSubCategory("Notebooks");
         productDetailsPage.itemAdd("Samsung");
-        Thread.sleep(2000);
 
-
+        //Navigating to the Cart
         CartPage cartPage=productDetailsPage.cartNavigationfromNotifications();
         cartPage.setTermsandService();
 
-
+        //Order Checkout
         CheckoutPage checkoutPage= cartPage.orderCheckoutButton();
         Boolean savedAddressStatus=checkoutPage.savedAddressCheck();
+
+        //Completing the Order with the Check that we have saved address or not.
 
         if (savedAddressStatus) {
             checkoutPage.setFirstName("FirstNameCheckout");
@@ -45,9 +51,8 @@ public class OrderFromMenuTest extends BaseTest {
 
         }
 
-
             checkoutPage.continueButtonClick(0);
-        Thread.sleep(3000);
+
 
             checkoutPage.selectShippingMethod();
             checkoutPage.continueButtonClick(2);
@@ -56,7 +61,7 @@ public class OrderFromMenuTest extends BaseTest {
 
             if (PaymentMethod.contains("Credit"))
             {
-                checkoutPage.setCreditCard("MasterCard");
+                checkoutPage.setCreditCard("Master card");
                 checkoutPage.setCardholderName("TestHacker");
                 checkoutPage.setCardNumber("5555555555554444");
                 checkoutPage.setCardExpireMonth("12");
@@ -64,13 +69,16 @@ public class OrderFromMenuTest extends BaseTest {
                 checkoutPage.setCardCode("123");
 
             }
-        checkoutPage.continueButtonClick(4);
+            checkoutPage.continueButtonClick(4);
             checkoutPage.confirmButtonClick();
+            String orderText=checkoutPage.getOrderNumber();
+            String[] orderID=orderText.trim().split(":");
+            System.out.println(orderID[1].trim());
 
 
 
 
-        Thread.sleep(3000);
+
 
 
         driver.quit();

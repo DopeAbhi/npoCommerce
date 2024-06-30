@@ -85,6 +85,9 @@ public class CheckoutPage extends AbstractComponent {
      @FindBy(xpath = "//button[contains(text(),'Confirm')]")
      private WebElement confirmButton;
 
+     @FindBy(xpath = "//*[contains(text(),'Order number')]")
+     private WebElement orderNumber;
+
 
 
     public void  setFirstName(String firstName)
@@ -210,6 +213,12 @@ public class CheckoutPage extends AbstractComponent {
     public void confirmButtonClick()
     {
         confirmButton.click();
+    }
+
+    public String getOrderNumber()
+    {
+
+       return  orderNumber.getText();
     }
 
 
